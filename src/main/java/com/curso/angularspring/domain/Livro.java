@@ -1,19 +1,23 @@
 package com.curso.angularspring.domain;
 
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.util.Objects;
-
-public class Livro {
-
+@Entity
+public class Livro implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String titulo;
     private String nome_autor;
     private String texto;
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
     private Categoria categoria;
-
     public Livro() {
         super();
     }
-
     public Livro(Integer id, String titulo, String nome_autor, String texto, Categoria categoria) {
         this.id = id;
         this.titulo = titulo;
@@ -61,7 +65,6 @@ public class Livro {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -69,7 +72,6 @@ public class Livro {
         Livro livro = (Livro) o;
         return Objects.equals(id, livro.id);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(id);
