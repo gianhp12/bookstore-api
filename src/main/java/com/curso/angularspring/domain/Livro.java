@@ -1,11 +1,11 @@
 package com.curso.angularspring.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Objects;
 @Entity
-@Table(name = "Livro")
 public class Livro implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,6 +13,7 @@ public class Livro implements Serializable {
     private String titulo;
     private String nome_autor;
     private String texto;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;

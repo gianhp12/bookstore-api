@@ -19,10 +19,10 @@ public class DBService {
         Categoria cat1 = new Categoria(null,"Informatica","Livro de Informática");
         Livro l1 = new Livro(null,"Clean Code","Robert Martin","Loren Ipsum",cat1);
 
-        cat1.getLivros().addAll(Arrays.asList(l1));
+        this.categoriaRepository.save(cat1);
+        this.livroRepository.save(l1);
 
-        this.categoriaRepository.saveAll(Arrays.asList(cat1));
-        this.livroRepository.saveAll(Arrays.asList(l1));
+        System.out.println("Registros salvos co sucesso");
 
     }
 }
