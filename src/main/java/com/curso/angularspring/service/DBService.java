@@ -7,8 +7,6 @@ import com.curso.angularspring.repositories.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-
 @Service
 public class DBService {
     @Autowired

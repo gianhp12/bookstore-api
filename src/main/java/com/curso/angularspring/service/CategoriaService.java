@@ -5,10 +5,8 @@ import com.curso.angularspring.dto.CategoriaDTO;
 import com.curso.angularspring.repositories.CategoriaRepository;
 import com.curso.angularspring.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 

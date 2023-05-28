@@ -2,6 +2,8 @@ package com.curso.angularspring.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Length;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -10,8 +12,14 @@ public class Livro implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotEmpty(message = "O campo titulo não pode ser vazio")
+    @Length(min = 3,max = 50,message = "O campo titulo deve ter entre 3 a 50 caracteres")
     private String titulo;
+    @NotEmpty(message = "O campo nome_autor não pode ser vazio")
+    @Length(min = 3,max = 50,message = "O campo nome_autor deve ter entre 3 a 50 caracteres")
     private String nome_autor;
+    @NotEmpty(message = "O campo texto não pode ser vazio")
+    @Length(min = 10,max = 2000000,message = "O campo texto deve ter entre 3 a 2.000.000 caracteres")
     private String texto;
     @JsonIgnore
     @ManyToOne
