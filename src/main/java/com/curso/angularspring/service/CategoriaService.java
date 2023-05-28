@@ -5,6 +5,8 @@ import com.curso.angularspring.dto.CategoriaDTO;
 import com.curso.angularspring.repositories.CategoriaRepository;
 import com.curso.angularspring.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,5 +33,16 @@ public class CategoriaService {
         obj.setNome(objDto.getNome());
         obj.setDescricao(objDto.getDescricao());
         return repository.save(obj);
+    }
+
+    public void delete(Integer id) {
+        findByID(id);
+        try{
+            repository.deleteById(id);
+        }
+        catch (DataIntegrityViolationException e){
+            throw new com.curso.angularspring.service.exceptions.DataIntegrationViolationException("Categoria não pode ser deletado! Possui livros associados");
+        }
+
     }
 }
