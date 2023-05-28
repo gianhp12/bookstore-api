@@ -1,6 +1,7 @@
 package com.curso.angularspring.service;
 
 import com.curso.angularspring.domain.Categoria;
+import com.curso.angularspring.dto.CategoriaDTO;
 import com.curso.angularspring.repositories.CategoriaRepository;
 import com.curso.angularspring.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,13 @@ public class CategoriaService {
     }
     public Categoria create(Categoria obj){
         obj.setId(null);
+        return repository.save(obj);
+    }
+
+    public Categoria update(Integer id, CategoriaDTO objDto) {
+        Categoria obj = findByID(id);
+        obj.setNome(objDto.getNome());
+        obj.setDescricao(objDto.getDescricao());
         return repository.save(obj);
     }
 }
